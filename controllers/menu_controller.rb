@@ -43,7 +43,6 @@ class MenuController
       main_menu
     when 6
       puts "Good-bye!"
-
       exit(0)
 
     else
@@ -54,11 +53,12 @@ class MenuController
   end
 
   def entry_n_submenu
-    print "Entry number to view"
+    print "Entry number to view: "
     selection = gets.chomp.to_i
 
     if selection < @address_book.entries.count
-      puts @address_book.entries(selection)
+
+      puts @address_book.entries[selection-1]
       puts "Press enter to return to the main menu"
       gets.chomp
       system "clear"
@@ -70,11 +70,11 @@ class MenuController
 
   def view_all_entries
 
-    address_book.entries.each do |entry|
+    @address_book.entries.each do |entry|
       system "clear"
       puts entry.to_s
 
-      entry_submenu(entry)
+      entry_n_submenu(entry)
     end
 
       system "clear"
